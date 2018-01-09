@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= title %></title>
+  </head>
+  <body>
+    <section role="main" id="app">
+      <div><%- app %></div>
+    </section>
+    <script>
+      try {
+        //通过render，将应用的state由ejs注入到全局对象__REDUX_STATE__中，用于redux的state初始化
+        window.__REDUX_STATE__ = <%- JSON.stringify(reduxData) %>;
+      } catch (e) {
+        console.warn('error in getting server redux data');
+      }
+    </script>
+    <script src="/build/common.js"></script>
+    <script src="/build/main.js"></script>
+  </body>
+</html>
