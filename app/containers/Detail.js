@@ -3,17 +3,19 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
 class Detail extends Component{
-   constructor{
-
+   constructor(){
+       super()
+       this.state={
+           content:''
+       }
    }
    static fetch (state, dispatch) {
 
    }
-
    render(){
      return(
         <div>
-            <p>{content}</p>
+            <p>{this.state.content}</p>
         </div>
      )
    }

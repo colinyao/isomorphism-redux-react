@@ -44,12 +44,12 @@ module.exports = {
         include: resolve('app')
       },{
         test: /\.css$/,
-        loader: 'style!css!postcss'
+        use:[{
+          loader:'style-loader'
+        },{
+          loader:'css-loader'
+        }]
       }, {
-        test: /\.less$/,
-        include: includes,
-        loader: 'style!css!less!postcss'
-      },{
          test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
          loader: 'url-loader',
          options: {

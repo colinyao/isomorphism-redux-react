@@ -1,4 +1,17 @@
-var config = require('./default')
+require('babel-polyfill')
+require('babel-core/register')({  //通过bable解决node支持import/export
+  plugins: [
+    // 忽略css文件
+    ['babel-plugin-transform-require-ignore', {
+      extensions: ['.less', '.css']
+    }],
+    //js替换
+    ['inline-replace-variables', {
+      __SERVER__: true
+    }]
+  ]
+})
+var config = require('../build/default')
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
@@ -8,8 +21,8 @@ var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = require('./webpack.dev')
-
+var webpackConfig = require('../build/webpack.dev')
+var serverMiddleware=require('../platform/server/middleware')
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
 // automatically open browser, if not set will be false
@@ -21,6 +34,7 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
@@ -29,6 +43,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: () => {}
 })
+serverMiddleware(app)
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {

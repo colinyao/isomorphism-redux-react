@@ -2,8 +2,8 @@
  * 浏览器端 React的根节点挂载
  * 通过打包生成到Views目录中index.ejs页面
  */
-import 'core-js/fn/object/assign';
-import 'isomorphic-fetch';
+import 'core-js/fn/object/assign'
+import 'isomorphic-fetch'
 import React from 'react'
 import {render} from 'react-dom'
 import routes from './routes'
@@ -16,4 +16,4 @@ import configureStore from './store'
 const store = configureStore(window.__REDUX_STATE__)
 
 // 浏览器端使用 ReactDOM.render 初始化页面，首屏渲染
-render(<Provider store={store}>{routes}</Provider>,document.querySelector('#app'))
+render(<Provider store={store}>{routes}</Provider>, document.querySelector('#app'))

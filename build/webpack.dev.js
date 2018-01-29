@@ -9,7 +9,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 Object.keys(baseConfig.entry).forEach(function(name) {
-  baseConfig.entry[name] = ['webpack-hot-middleware/client'].concat(baseConfig.entry[name])
+  baseConfig.entry[name] = ['react-hot-loader','webpack-hot-middleware/client'].concat(baseConfig.entry[name])
 })
 
 let config=merge(baseConfig,{
@@ -28,10 +28,10 @@ let config=merge(baseConfig,{
 
 config.module.rules.push({
   test: /\.(js|jsx)$/,
-  loader: 'react-hot-loader!babel-loader',
+  loader:'babel-loader',
   exclude: /node_modules/,
   include: [].concat(
-    [path.resolve(__dirname, 'app')]
+    [path.join(__dirname, '/../app')]
   )
 });
 

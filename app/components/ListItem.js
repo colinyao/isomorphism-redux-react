@@ -1,7 +1,7 @@
-import React,{PureComponent} from 'react'
+import React,{Component} from 'react'
 import PropTypes from 'prop-types'
 
-class ListItem extends PureComponent{
+class ListItem extends Component{
    render(){
        let {title,abstract,date}=this.props.data
        return(
