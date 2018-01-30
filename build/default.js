@@ -42,7 +42,7 @@ module.exports = {
     // just be aware of this issue when enabling this option.
     cssSourceMap: false,
     devServer: {
-        contentBase: './src/',
+        contentBase: '/',
         historyApiFallback: true,
         hot: true,
         port: 8000,

@@ -12,13 +12,13 @@ function resolve(dir) {
 }
 module.exports = {
   entry:{
-    app:['./app/index.js'],
+    app:['eventsource-polyfill','./app/index.js'],
     vendors: ['react','react-dom','react-router']
   },
   output: {
     path: defaultSettings.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[hash].js'),
-    chunkFilename: utils.assetsPath('js/chunks/[id].[hash].js')
+    filename: utils.assetsPath('js/[name].js'),
+    chunkFilename: utils.assetsPath('js/chunks/[id].[hash].js'),
   },
   resolve: {
     modules: ['node_modules', path.join(__dirname, '/node_modules')],

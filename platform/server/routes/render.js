@@ -5,9 +5,6 @@ import renderCtrl from '../controllers/serverRender'  //封装好的支出页面
 
 
 export default async (req,res,next)=>{
-    console.log('render')
-    console.log(routes)
-    console.log(req.path)
    try{
      const location={routes:routes,location:req.path}
      match(location, (error, redirectLocation, renderProps) => {
@@ -18,13 +15,12 @@ export default async (req,res,next)=>{
            console.error('ROUTER ERROR:', pretty.render(error));
            res.status(500);
          } else if (renderProps) {
-              console.log(renderProps)
               renderCtrl(req,res,renderProps)
          } else {
            res.status(404).send('Not found');
          }
        });
    }catch(e){
-
+       return e
    }
 }

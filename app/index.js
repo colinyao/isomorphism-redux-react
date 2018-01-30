@@ -2,6 +2,9 @@
  * 浏览器端 React的根节点挂载
  * 通过打包生成到Views目录中index.ejs页面
  */
+ if (module.hot) {
+   module.hot.accept();
+ }
 import 'core-js/fn/object/assign'
 import 'isomorphic-fetch'
 import React from 'react'

@@ -18,6 +18,7 @@ export default async (req, res, renderProps) => {
 
   // 遍历路由中注册的组件，创建加载数据请求，至数组中
 
+
   for (let component of renderProps.components) {
     if (component && component.WrappedComponent && component.WrappedComponent.fetch) {
       const _tasks = component.WrappedComponent.fetch(store.getState(), store.dispatch)
@@ -29,7 +30,9 @@ export default async (req, res, renderProps) => {
       }
     }
   }
+
  console.log(prefetchTasks)
+
   //当所有组件的数据加载完成后，
   await Promise.all(prefetchTasks)
   // 渲染组件

@@ -1,12 +1,12 @@
 
 import indexCtrl from '../controllers/indexCtrl'
 import detailCtrl from '../controllers/detailCtrl'
+import {Router} from 'express'
+
+const router =Router()
 
 
-export default async (app)=>{
+router.get('/api/index', indexCtrl)
+router.get('/api/detail', detailCtrl)
 
-
-   app.get('/api/index', indexCtrl)
-   app.get('/api/detail', detailCtrl)
-
-}
+export default router
